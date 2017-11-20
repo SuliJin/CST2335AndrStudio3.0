@@ -86,20 +86,9 @@ public class ChatWindow extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cursor.moveToFirst();//resets the iteration of results
-                int counter = 0;
-                String message = "";
-                long idInDb = 0;
-                while(!cursor.isAfterLast() ) {
-                    if (position == counter) {
-                        message = cursor.getString(messageIndex);
-                        idInDb = cursor.getLong(idIndex);
-                        break;
-                    } else {
-                        cursor.moveToNext();
-                        counter++;
-                    }
-                }
+
+                String message = messageAdapter.getItem(position);
+                long idInDb =  messageAdapter.getItemId(position);
 
                 Bundle bundle = new Bundle();
                 bundle.putLong("id",idInDb);
@@ -116,6 +105,7 @@ public class ChatWindow extends Activity {
                         FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
                         fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     }
+
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.add(R.id.frameLayout, messageFragment).addToBackStack(null).commit();
                 }
@@ -178,7 +168,7 @@ public class ChatWindow extends Activity {
         }
 
         public long getItemId(int position){
-            cursor.moveToPosition(position);
+           cursor.moveToPosition(position);
            ID = cursor.getLong(cursor.getColumnIndex(ChatDatabaseHelper.KEY_ID));
            return ID;
         }
