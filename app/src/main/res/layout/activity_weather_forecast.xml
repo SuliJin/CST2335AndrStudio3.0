@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context="sulijin.androidlabs.WeatherForecast">
+
+    <ImageView
+        android:id="@+id/temperatureImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/currentTemperatureLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/temperatureImageView"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/currentTemperatureLabel"
+        android:textColor="#1d2adb"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/currentTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/currentTemperatureLabel"
+        android:layout_alignBaseline="@+id/currentTemperatureLabel"
+        android:text="@string/currentTemperature"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#fb0049"
+        />
+
+    <TextView
+        android:id="@+id/minTemperatureLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/currentTemperatureLabel"
+        android:layout_marginTop="14dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/minTemperatureLabel"
+        android:textColor="#1d2adb"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/minTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/minTemperatureLabel"
+        android:layout_toEndOf="@+id/minTemperatureLabel"
+        android:text="@string/minTemperature"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#fb0049"/>
+
+    <TextView
+        android:id="@+id/maxTemperatureLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/minTemperatureLabel"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/maxTemperatureLabel"
+        android:textSize="22sp"
+        android:textColor="#1d2adb"/>
+
+    <TextView
+        android:id="@+id/maxTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/maxTemperatureLabel"
+        android:layout_toEndOf="@+id/maxTemperatureLabel"
+        android:text="@string/maxTemperature"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#fb0049"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/maxTemperatureLabel"
+        android:layout_marginTop="15dp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

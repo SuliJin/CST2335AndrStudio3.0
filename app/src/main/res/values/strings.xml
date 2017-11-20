@@ -2,4 +2,29 @@
     <string name="app_name">Lab1</string>
     <string name="hello_message">Hello World!</string>
     <string name="ButtonText">I\'m a button</string>
+    <string name="Login">Login</string>
+    <string name="LogInName"></string>
+    <string name="passWord">password</string>
+    <string name="passWordText"></string>
+    <string name="radioButton">RadioButton</string>
+    <string name="checkBox">CheckBox</string>
+    <string name="Switch">What does this do?</string>
+    <string name="imageButton" />
+    <string name="dialog_message">Do you want to finish the activity</string>
+    <string name="dialog_title">Warning!</string>
+    <string name="ok">YES</string>
+    <string name="cancel">NO</string>
+    <string name="Button2Text">Start Chat</string>
+    <string name="sendButton">Send</string>
+    <string name="weatherButton">Weather Forcast</string>
+    <string name="currentTemperatureLabel">Current Temperature: </string>
+    <string name="currentTemperature">curTemp</string>
+    <string name="minTemperatureLabel">Minimum Temperature: </string>
+    <string name="minTemperature">minTemp</string>
+    <string name="maxTemperatureLabel">Maximum Temperature: </string>
+    <string name="maxTemperature">maxTemp</string>
+    <string name="deleteMessageButton">DELETE THIS MESSAGE</string>
+    <string name="chatIDTextView">ID = </string>
+    <string name="chatMessageTextView">MessageHere</string>
+
 </resources>

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">实验一</string>
-    <string name="hello_message">您好，世界!</string>
-    <string name="ButtonText">我是按钮</string>
+        <string name="app_name">实验一</string>
+        <string name="hello_message">你好，世界!</string>
+        <string name="ButtonText">我是一个按钮</string>
+        <string name="Login">登陆</string>
+        <string name="LogInName"></string>
+        <string name="passWord">密码</string>
+        <string name="passWordText"></string>
+        <string name="radioButton">单选按钮</string>
+        <string name="checkBox">复选框</string>
+        <string name="Switch">这是干什么的?</string>
+        <string name="imageButton"></string>
+        <string name="dialog_message">你确认要返回吗？</string>
+        <string name="dialog_title">警告</string>
+        <string name="ok">是</string>
+        <string name="cancel">否</string>
+        <string name="Button2Text">开始聊天</string>
+        <string name="sendButton">发送</string>
+        <string name="weatherButton">天气预报</string>
+        <string name="currentTemperatureLabel">当前温度: </string>
+        <string name="minTemperatureLabel">最低温度: </string>
+        <string name="maxTemperatureLabel">最高温度: </string>
 </resources>
