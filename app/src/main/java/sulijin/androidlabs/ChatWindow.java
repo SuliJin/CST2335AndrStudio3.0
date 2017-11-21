@@ -32,7 +32,7 @@ public class ChatWindow extends Activity {
     private ArrayList<String> chatMessageList = new ArrayList();
     private SQLiteDatabase writeableDB;
     private Boolean isLandscape;
-    private FrameLayout tabletFrameLayout;
+    private FrameLayout landscapeFrameLayout;
     private Cursor cursor;
     private int requestCode = 1;
     private ChatAdapter messageAdapter;
@@ -45,17 +45,16 @@ public class ChatWindow extends Activity {
         sendButton = (Button)findViewById(R.id.sendButton);
         editText = (EditText)findViewById(R.id.editText);
         listView = (ListView)findViewById(R.id.chatView);
+        landscapeFrameLayout = (FrameLayout) findViewById(R.id.landscapeFrameLayout);
 
-        tabletFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
-
-        if(tabletFrameLayout == null){
+        if(landscapeFrameLayout == null){
             isLandscape = false;
-            Log.i(ACTIVITY_NAME, "Portrait layout of the phone");
+            Log.i(ACTIVITY_NAME, "The phone is on portrait layout.");
 
         }
         else {
             isLandscape = true;
-            Log.i(ACTIVITY_NAME, "Landscape layout of the phone");
+            Log.i(ACTIVITY_NAME, "The phone is on landscape layout.");
         }
 
         final ChatAdapter messageAdapter =new ChatAdapter( this );
@@ -106,7 +105,7 @@ public class ChatWindow extends Activity {
                     }
 
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.frameLayout, messageFragment).addToBackStack(null).commit();
+                    fragmentTransaction.add(R.id.landscapeFrameLayout, messageFragment).addToBackStack(null).commit();
                 }
                 else{
                     intent.putExtra("bundle", bundle);

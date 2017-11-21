@@ -7,7 +7,7 @@
     tools:context="sulijin.androidlabs.ChatWindow">
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/landscapeFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
