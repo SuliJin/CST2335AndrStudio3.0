@@ -16,10 +16,7 @@ public class MessageDetailActivity extends Activity {
         setContentView(R.layout.activity_message_detail);
 
         MessageFragment messageFragment = new MessageFragment();
-        Bundle bundle = new Bundle();
-        final long id = getIntent().getBundleExtra("bundle").getLong("id");
-        bundle.putLong("id",id);
-        bundle.putString("message", getIntent().getBundleExtra("bundle").getString("message"));
+        Bundle bundle = getIntent().getBundleExtra("bundle");
         messageFragment.setArguments(bundle);
         FragmentManager fragmentManager =getFragmentManager();
         //remove previous fragment

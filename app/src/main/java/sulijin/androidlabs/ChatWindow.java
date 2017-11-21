@@ -34,8 +34,8 @@ public class ChatWindow extends Activity {
     private Boolean isLandscape;
     private FrameLayout tabletFrameLayout;
     private Cursor cursor;
-    private Long ID;
     private int requestCode = 1;
+    private ChatAdapter messageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +77,11 @@ public class ChatWindow extends Activity {
             }
         });
 
-        cursor = writeableDB.rawQuery("select * from lab5Table",null );
-        final int messageIndex = cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE);
-        final int idIndex = cursor.getColumnIndex(ChatDatabaseHelper.KEY_ID);
-        final Intent intent = new Intent(this, MessageDetailActivity.class);
+       cursor = writeableDB.rawQuery("select * from lab5Table",null );
+       final int messageIndex = cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE);
+       final Intent intent = new Intent(this, MessageDetailActivity.class);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -134,7 +133,7 @@ public class ChatWindow extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (this.requestCode == requestCode) {
+        if (this.requestCode == requestCode && data != null) {
             Long id = data.getLongExtra("id", -1);
             writeableDB.delete(ChatDatabaseHelper.TABLE_NAME, ChatDatabaseHelper.KEY_ID + "=" + id, null);
         }
@@ -169,9 +168,8 @@ public class ChatWindow extends Activity {
 
         public long getItemId(int position){
            cursor.moveToPosition(position);
-           ID = cursor.getLong(cursor.getColumnIndex(ChatDatabaseHelper.KEY_ID));
-           return ID;
-        }
+           return cursor.getLong(cursor.getColumnIndex(ChatDatabaseHelper.KEY_ID));
+           }
 
     }
     @Override
