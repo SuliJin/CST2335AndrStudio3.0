@@ -12,7 +12,8 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:background="#7377ab"/>
 
     <TextView
         android:id="@+id/currentTemperatureLabel"

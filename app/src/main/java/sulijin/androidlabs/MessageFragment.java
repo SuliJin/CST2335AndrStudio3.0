@@ -21,7 +21,9 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment, container, false);
+
         ChatDatabaseHelper chatDatabaseHelper = new ChatDatabaseHelper(getActivity());
+        //ChatWindow chatWindow = new ChatWindow();
         writeableDB = chatDatabaseHelper.getWritableDatabase();
 
         Bundle bundle = this.getArguments();
