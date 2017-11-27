@@ -1,5 +1,6 @@
 package sulijin.androidlabs;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -8,9 +9,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -50,8 +53,10 @@ public class WeatherForecast extends Activity {
         maxTempTextView = (TextView) findViewById(R.id.maxTemperature);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
-   //     progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
-
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+        animation.setDuration(3000); // 3 second
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
         ForecastQuery forecastQuery = new ForecastQuery();
         forecastQuery.execute();
     }
@@ -95,10 +100,13 @@ public class WeatherForecast extends Activity {
                             if (name.equalsIgnoreCase("temperature")) {
                                 currentTemperature = parser.getAttributeValue(null, "value") + "°C";
                                 this.publishProgress(25);
+                                SystemClock.sleep(1000);
                                 minTemperature =parser.getAttributeValue(null, "min")+ "°C";
                                 this.publishProgress(50);
+                                SystemClock.sleep(1000);
                                 maxTemperature =parser.getAttributeValue(null, "max")+ "°C";
                                 this.publishProgress(75);
+                                SystemClock.sleep(1000);
                             }
 
                             if (name.equalsIgnoreCase("weather")) {
@@ -191,6 +199,7 @@ public class WeatherForecast extends Activity {
             minTempTextView.setText(this.minTemperature);
             maxTempTextView.setText(this.maxTemperature);
             imageView.setImageBitmap(this.bitmap);
+            progressBar.setVisibility(View.INVISIBLE );
         }
     }
 }
