@@ -13,13 +13,13 @@
         android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-
         android:background="#4280e3"/>
 
     <TextView
         android:id="@+id/currentTemperatureLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/temperatureImageView"
         android:fontFamily="sans-serif-medium"
@@ -94,7 +94,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-
         android:layout_below="@+id/maxTemperatureLabel"
         android:layout_marginTop="25dp"
         android:background="#a7e5f6"
