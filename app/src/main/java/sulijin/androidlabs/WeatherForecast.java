@@ -40,6 +40,7 @@ public class WeatherForecast extends Activity {
     private TextView curTempTextView, minTempTextView, maxTempTextView;
     private ImageView imageView;
     private ProgressBar progressBar;
+    private ObjectAnimator animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +54,12 @@ public class WeatherForecast extends Activity {
         maxTempTextView = (TextView) findViewById(R.id.maxTemperature);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
-        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+        progressBar.setProgress(0);
+        animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
         animation.setDuration(3000); // 3 second
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
+
         ForecastQuery forecastQuery = new ForecastQuery();
         forecastQuery.execute();
     }
@@ -100,13 +103,13 @@ public class WeatherForecast extends Activity {
                             if (name.equalsIgnoreCase("temperature")) {
                                 currentTemperature = parser.getAttributeValue(null, "value") + "°C";
                                 this.publishProgress(25);
-                                SystemClock.sleep(1000);
+                               SystemClock.sleep(900);
                                 minTemperature =parser.getAttributeValue(null, "min")+ "°C";
                                 this.publishProgress(50);
-                                SystemClock.sleep(1000);
+                                SystemClock.sleep(900);
                                 maxTemperature =parser.getAttributeValue(null, "max")+ "°C";
                                 this.publishProgress(75);
-                                SystemClock.sleep(1000);
+                                SystemClock.sleep(900);
                             }
 
                             if (name.equalsIgnoreCase("weather")) {
