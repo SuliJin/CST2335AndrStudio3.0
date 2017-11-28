@@ -54,7 +54,7 @@ public class WeatherForecast extends Activity {
         maxTempTextView = (TextView) findViewById(R.id.maxTemperature);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
-        progressBar.setProgress(0);
+
         animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
         animation.setDuration(3000); // 3 second
         animation.setInterpolator(new DecelerateInterpolator());
