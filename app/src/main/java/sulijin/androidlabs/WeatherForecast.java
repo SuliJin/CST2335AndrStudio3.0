@@ -53,6 +53,7 @@ public class WeatherForecast extends Activity {
         minTempTextView = (TextView) findViewById(R.id.minTemperature);
         maxTempTextView = (TextView) findViewById(R.id.maxTemperature);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+     //   SystemClock.sleep(2000);
         progressBar.setVisibility(View.VISIBLE);
 
         animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
@@ -103,13 +104,13 @@ public class WeatherForecast extends Activity {
                             if (name.equalsIgnoreCase("temperature")) {
                                 currentTemperature = parser.getAttributeValue(null, "value") + "°C";
                                 this.publishProgress(25);
-                               SystemClock.sleep(900);
+                                SystemClock.sleep(900);
                                 minTemperature =parser.getAttributeValue(null, "min")+ "°C";
                                 this.publishProgress(50);
                                 SystemClock.sleep(900);
                                 maxTemperature =parser.getAttributeValue(null, "max")+ "°C";
                                 this.publishProgress(75);
-                                SystemClock.sleep(900);
+                               SystemClock.sleep(900);
                             }
 
                             if (name.equalsIgnoreCase("weather")) {

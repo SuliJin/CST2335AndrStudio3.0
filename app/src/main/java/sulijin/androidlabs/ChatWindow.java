@@ -1,7 +1,6 @@
 package sulijin.androidlabs;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
@@ -24,6 +23,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static sulijin.androidlabs.ChatDatabaseHelper.TABLE_NAME;
+
 public class ChatWindow extends Activity {
     protected static final String ACTIVITY_NAME = "ChatWindow";
     private Button sendButton;
@@ -35,7 +36,10 @@ public class ChatWindow extends Activity {
     private FrameLayout landscapeFrameLayout;
     private Cursor cursor;
     private int requestCode = 1;
-    private ChatAdapter messageAdapter;
+    private ChatAdapter chatAdapter;
+
+    private ChatDatabaseHelper chatDatabaseHelper;
+    int messageIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,27 +61,27 @@ public class ChatWindow extends Activity {
             Log.i(ACTIVITY_NAME, "The phone is on landscape layout.");
         }
 
-        final ChatAdapter messageAdapter =new ChatAdapter( this );
-        ChatDatabaseHelper chatDatabaseHelper = new ChatDatabaseHelper(this);
+        chatAdapter =new ChatAdapter( this );
+        chatDatabaseHelper = new ChatDatabaseHelper(this);
         writeableDB = chatDatabaseHelper.getWritableDatabase();
-        listView.setAdapter(messageAdapter);
+        listView.setAdapter(chatAdapter);
 
         sendButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 String input = editText.getText().toString();
                 chatMessageList.add(input);
-                messageAdapter.notifyDataSetChanged();
+                chatAdapter.notifyDataSetChanged();
                 editText.setText("");
 
                 ContentValues newData = new ContentValues();
                 newData.put(ChatDatabaseHelper.KEY_MESSAGE, input);
-                writeableDB.insert(ChatDatabaseHelper.TABLE_NAME, "" , newData);
+                writeableDB.insert(TABLE_NAME, "" , newData);
+                refreshActivity();
             }
         });
 
        cursor = writeableDB.rawQuery("select * from lab5Table",null );
-       final int messageIndex = cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE);
        final Intent intent = new Intent(this, MessageDetailActivity.class);
 
        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,8 +89,8 @@ public class ChatWindow extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String message = messageAdapter.getItem(position);
-                long idInDb =  messageAdapter.getItemId(position);
+                String message = chatAdapter.getItem(position);
+                long idInDb =  chatAdapter.getItemId(position);
 
                 Bundle bundle = new Bundle();
                 bundle.putLong("id",idInDb);
@@ -119,7 +123,7 @@ public class ChatWindow extends Activity {
         while(!cursor.isAfterLast() ) {
             Log.i(ACTIVITY_NAME, "SQL MESSAGE:"
                     +cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE)));
-            chatMessageList.add(cursor.getString(messageIndex));
+            chatMessageList.add(cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE)));
             cursor.moveToNext();
         }
         Log.i(ACTIVITY_NAME, "Cursor's  column count =" + cursor.getColumnCount() );
@@ -134,7 +138,8 @@ public class ChatWindow extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (this.requestCode == requestCode && data != null) {
             Long id = data.getLongExtra("id", -1);
-            writeableDB.delete(ChatDatabaseHelper.TABLE_NAME, ChatDatabaseHelper.KEY_ID + "=" + id, null);
+            writeableDB.delete(TABLE_NAME, ChatDatabaseHelper.KEY_ID + "=" + id, null);
+            refreshActivity();
         }
     }
 
@@ -200,5 +205,11 @@ public class ChatWindow extends Activity {
         super.onDestroy();
         writeableDB.close();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
+    }
+
+    public void refreshActivity(){
+        finish();
+        Intent intent = getIntent();
+        startActivity(intent);
     }
 }

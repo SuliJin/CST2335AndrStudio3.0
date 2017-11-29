@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public class MessageFragment extends Fragment {
     private SQLiteDatabase writeableDB;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -40,7 +41,11 @@ public class MessageFragment extends Fragment {
             public void onClick(View var1) {
                 if (isLandscape) {
                     writeableDB.delete(ChatDatabaseHelper.TABLE_NAME, ChatDatabaseHelper.KEY_ID + "=" + id, null);
-                } else {
+                    getActivity().finish();
+                    Intent intent = getActivity().getIntent();
+                    startActivity(intent);
+                }
+                else {
                     Intent ret = new Intent();
                     ret.putExtra("id", id);
                     getActivity().setResult(Activity.RESULT_OK, ret);
@@ -50,4 +55,5 @@ public class MessageFragment extends Fragment {
         });
         return view;
     }
+
 }
