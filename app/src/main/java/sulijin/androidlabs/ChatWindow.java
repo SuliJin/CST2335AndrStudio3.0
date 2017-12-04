@@ -77,7 +77,7 @@ public class ChatWindow extends Activity {
                 ContentValues newData = new ContentValues();
                 newData.put(ChatDatabaseHelper.KEY_MESSAGE, input);
                 writeableDB.insert(TABLE_NAME, "" , newData);
-                refreshActivity();
+               refreshActivity();
             }
         });
 
@@ -139,7 +139,7 @@ public class ChatWindow extends Activity {
         if (this.requestCode == requestCode && data != null) {
             Long id = data.getLongExtra("id", -1);
             writeableDB.delete(TABLE_NAME, ChatDatabaseHelper.KEY_ID + "=" + id, null);
-            refreshActivity();
+            this.refreshActivity();
         }
     }
 
@@ -174,8 +174,8 @@ public class ChatWindow extends Activity {
            cursor.moveToPosition(position);
            return cursor.getLong(cursor.getColumnIndex(ChatDatabaseHelper.KEY_ID));
            }
-
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -208,8 +208,8 @@ public class ChatWindow extends Activity {
     }
 
     public void refreshActivity(){
-        finish();
+        this.finish();
         Intent intent = getIntent();
-        startActivity(intent);
+        this.startActivity(intent);
     }
 }

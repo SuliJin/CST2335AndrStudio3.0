@@ -27,7 +27,11 @@
         <activity android:name=".ListItemActivity" />
         <activity android:name=".ChatWindow" />
         <activity android:name=".WeatherForecast" />
-        <activity android:name=".MessageDetailActivity"></activity>
+        <activity android:name=".MessageDetailActivity" />
+        <activity
+            android:name=".TestToolbar"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_one"
+        android:icon="@drawable/facebook"
+        android:orderInCategory="1"
+        android:title="@string/actionOne"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_two"
+        android:icon="@drawable/music"
+        android:orderInCategory="2"
+        android:title="@string/actionTwo"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_three"
+        android:icon="@drawable/twitter"
+        android:orderInCategory="3"
+        android:title="@string/actionThree"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/about"
+        android:title="@string/about"
+        app:showAsAction="never"/>
+
+</menu>
