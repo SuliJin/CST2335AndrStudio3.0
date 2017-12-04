@@ -6,11 +6,12 @@
 
     <ImageView
         android:id="@+id/happyFace"
-        android:layout_width="wrap_content"
-        android:layout_height="358dp"
+        android:layout_width="match_parent"
+        android:layout_height="373dp"
+        android:layout_centerInParent="true"
         android:background="#FFFFBB33"
         android:contentDescription="@string/happyFace"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         android:src="@drawable/happy" />
 
     <EditText
@@ -23,6 +24,6 @@
         android:layout_marginTop="4dp"
         android:fontFamily="sans-serif"
         android:inputType="text"
-        android:text="@string/newMessage" />
+        android:hint="@string/newMessage" />
 
 </LinearLayout>
